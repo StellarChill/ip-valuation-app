@@ -1,4 +1,4 @@
-import RegistrationForm from "./components/RegistrationForm";
+import RegistrationForm from "./LoginForm.tsx/RegistrationForm";
 function App() {
 
   return (
