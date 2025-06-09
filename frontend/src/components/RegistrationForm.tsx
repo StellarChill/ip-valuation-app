@@ -1,7 +1,8 @@
 import { useState } from "react";
-import InputField from "./InputField";
+import { InputField } from "./InputField";
 import { FaUser, FaEnvelope, FaBuilding, FaPhone } from "react-icons/fa";
 import IDGlogo from "../assets/idg-logo.png"; // Adjust the path as necessary
+import { Link } from "react-router-dom";
 
 export default function RegistrationForm() {
   const [name, setName] = useState("");
@@ -16,7 +17,7 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto  mt-23 bg-white p-6 rounded shadow align-center">
+    <div className="max-w-md mx-auto mb-20 mt-23 bg-white p-6 rounded shadow align-center">
       <div className="flex justify-center mb-4">
         <img src={IDGlogo} alt="IDG Logo" className="w-40" />
       </div>
@@ -61,6 +62,15 @@ export default function RegistrationForm() {
         >
           Submit
         </button>
+        <p className="mt-6  text-center">
+          Already have an account?{" "}
+          <Link
+            to="/"
+            className="text-blue-500 hover:underline font-semibold transition duration-200 ease-in-out"
+          >
+            Login here
+          </Link>
+        </p>
       </form>
     </div>
   );
