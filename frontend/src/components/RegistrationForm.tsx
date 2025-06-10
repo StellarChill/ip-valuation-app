@@ -58,7 +58,7 @@ export default function RegistrationForm() {
         />
         <button
           type="submit"
-          className="w-full mt-4 bg-green-600 text-white py-2 rounded hover:bg-green-700"
+          className="w-full mt-4 bg-gradient-to-r from-green-400 to-green-500 text-white py-2 rounded-full shadow-md hover:shadow-lg hover:from-green-500 hover:to-green-800 transition duration-200 ease-in-out"
         >
           Submit
         </button>
@@ -66,7 +66,7 @@ export default function RegistrationForm() {
           Already have an account?{" "}
           <Link
             to="/"
-            className="text-blue-500 hover:underline font-semibold transition duration-200 ease-in-out"
+            className="text-blue-500 font-semibold text-xs hover:underline transition duration ease-in-out"
           >
             Login here
           </Link>
