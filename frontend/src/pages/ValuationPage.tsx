@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-// import Header from "../components/Valuation/Header";
-// import SearchBar from "../components/Valuation/SearchBar";
-// import ValuationLinks from "../components/Valuation/ValuationLinks";
-// import Disclaimer from "../components/Valuation/Disclaimer";
+import Header from "../components/Valuation/Header";
+import SearchBar from "../components/Valuation/SearchBar";
+import ValuationLinks from "../components/Valuation/ValuationLinks";
+import Disclaimer from "../components/Valuation/Disclaimer";
 import PatentValuation from "../components/Valuation/PatentValuation";
 
 const ValuationPage: React.FC = () => {
@@ -16,10 +16,10 @@ const ValuationPage: React.FC = () => {
 
   return (
     <>
-      {/* <div className="min-h-screen bg-gray-100 p-6">
+      <div className="min-h-screen bg-gradient-to-b from-gray-100 to-white p-6">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
         <Header />
-        <h1 className="text-3xl font-bold mb-4">Valuation Your Invention</h1>
+        <h1 className="text-4xl font-bold text-green-600 mb-4">Valuation Your Invention</h1>
         <SearchBar
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
@@ -28,10 +28,10 @@ const ValuationPage: React.FC = () => {
         <ValuationLinks />
         <Disclaimer />
       </div>
-    </div> */}
+    </div>
 
-      <div className="min-h-screen bg-gray-100 p-6">
-        <PatentValuation />
+      <div className="min-h-screen bg-white p-6">
+        <PatentValuation query={searchQuery}/>
       </div>
     </>
   );

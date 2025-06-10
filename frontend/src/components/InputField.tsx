@@ -1,3 +1,4 @@
+// components/InputField.tsx
 import React from "react";
 
 type InputFieldProps = {
@@ -9,7 +10,7 @@ type InputFieldProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export  function InputField({
+export function InputField({
   label,
   value,
   placeholder,
@@ -19,7 +20,7 @@ export  function InputField({
 }: InputFieldProps) {
   return (
     <div className="mb-4">
-      <label className="block mb-1 font-semibold">{label}</label>
+      <label className="block mb-1 font-semibold text-gray-700">{label}</label>
       <div className="relative">
         {icons && (
           <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
@@ -28,7 +29,7 @@ export  function InputField({
         )}
         <input
           type={type}
-          className="w-full border border-gray-300 rounded px-3 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-green-400"
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -36,10 +37,10 @@ export  function InputField({
       </div>
     </div>
   );
-  
+}
   
  
-}
+
  export  function LoginFeild(){
    return( <>
       <div>
