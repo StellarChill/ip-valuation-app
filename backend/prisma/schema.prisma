@@ -1,36 +1,44 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")  // .env อยู่ใน backend/
-}
-
 model User {
-  id            Int      @id @default(autoincrement())
-  name          String
-  email         String   @unique
-  password      String
-  role          String
-  registered_at DateTime @default(now())
-  tokens        Token[]
-  searchLogs    SearchLog[]
+  id           Int         @id @default(autoincrement())
+  name         String
+  email        String      @unique
+  password     String
+  role         String
+  registered_at DateTime   @default(now())
+
+  company      String   
+  phone        String   
+
+  tokens       Token[]
+  searchLogs   SearchLog[]
 }
 
 model Token {
   id         Int      @id @default(autoincrement())
-  user       User     @relation(fields: [userId], references: [id])
   userId     Int
   remaining  Int
-  updated_at DateTime @updatedAt
+  updated_at DateTime
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }
 
 model SearchLog {
   id          Int      @id @default(autoincrement())
-  user        User     @relation(fields: [userId], references: [id])
   userId      Int
   query_text  String
   result_json Json
   searched_at DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }

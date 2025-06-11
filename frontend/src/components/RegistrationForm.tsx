@@ -1,19 +1,32 @@
 import { useState } from "react";
 import { InputField } from "./InputField";
-import { FaUser, FaEnvelope, FaBuilding, FaPhone } from "react-icons/fa";
+import { FaUser, FaEnvelope, FaBuilding, FaPhone, FaLock } from "react-icons/fa";
 import IDGlogo from "../assets/idg-logo.png"; // Adjust the path as necessary
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegistrationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = { name, email, company, phone };
-    console.log(formData);
+    const formData = { name, email, password,company, phone };
+    const response = await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      navigate("/");
+    } else {
+      alert("Registration failed");
+    }
   };
 
   return (
@@ -41,6 +54,14 @@ export default function RegistrationForm() {
           placeholder="Enter your email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <InputField
+          label="Password"
+          icons={<FaLock />}
+          placeholder="Enter your password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <InputField
           label="Company/Organization"
@@ -75,3 +96,4 @@ export default function RegistrationForm() {
     </div>
   );
 }
+

@@ -1,23 +1,40 @@
-import React, { useState } from 'react'
-import { InputField } from "./InputField"
-import { FaEnvelope, FaLock } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { InputField } from "./InputField";
+import { FaEnvelope, FaLock } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import IDGlogo from "../assets/idg-logo.png"; // Adjust the path as necessary
-
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = { email, password };
-        console.log(formData);
+
+        try {
+            const response = await fetch('http://localhost:3000/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Login success:', data);
+                // Handle success, e.g., save token, navigate to another page
+            } else {
+                const error = await response.json();
+                alert(error.message || 'Login failed');
+            }
+        } catch (err) {
+            alert('Network error');
+            console.error(err);
+        }
     };
 
     return (
-            <>
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-20 bg-white  p-6 rounded shadow ">
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-20 bg-white p-6 rounded shadow">
             <div className="flex justify-center mb-4">
                 <img src={IDGlogo} alt="IDG Logo" className="w-40" />
             </div>
@@ -55,7 +72,7 @@ export default function LoginForm() {
                     Register here
                 </Link>
             </div>
-        </form></>
-    )
+        </form>
+    );
 }
 
